@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Playlist() {
-  return (
-    <div>Playlist</div>
-  )
+  return <div className="bg-green-500 w-1/2 h-full"></div>;
 }
 
-export default Playlist
+export default Playlist;
