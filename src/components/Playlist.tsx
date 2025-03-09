@@ -1,7 +1,12 @@
 import React from "react";
+import Table from "./ui/table";
 
 function Playlist() {
-  return <div className="bg-green-500 w-1/2 h-full"></div>;
+  return (
+    <Table>
+      <div>efef</div>
+    </Table>
+  );
 }
 
 export default Playlist;
