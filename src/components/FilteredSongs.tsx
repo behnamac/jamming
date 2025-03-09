@@ -16,7 +16,7 @@ function FilteredSongs({ searchQuery, addToPlaylist }: Props) {
       <div className="ml-2 p-2 text-xl">
         {filteredItems.map((song) => (
           <Track
-          key={song.id}
+            key={song.id}
             songName={song.song}
             singer={song.singer}
             addToPlaylist={addToPlaylist}

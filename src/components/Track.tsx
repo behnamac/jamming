@@ -1,11 +1,13 @@
 interface props {
   songName: string;
   singer: string;
-  addToPlaylist: (song: { songName: string; singer: string }) => void;
+  addToPlaylist?: (song: { songName: string; singer: string }) => void;
 }
 function Track({ songName, singer, addToPlaylist }: props) {
   const handleClick = () => {
-    addToPlaylist({ songName, singer });
+    if (addToPlaylist) {
+      addToPlaylist({ songName, singer });
+    }
   };
 
   return (
