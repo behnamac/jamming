@@ -1,6 +1,7 @@
 import Track from "./Track";
 import songs from "../stores/data";
 import Table from "./ui/Table";
+import { useEffect, useState } from "react";
 
 interface Props {
   searchQuery: string;
@@ -8,9 +9,21 @@ interface Props {
 }
 
 const FilteredSongs: React.FC<Props> = ({ searchQuery, addToPlaylist }) => {
-  const filteredItems = songs.filter((song) =>
-    song.song.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const [filteredItems, setFilteredItems] = useState(songs);
+  useEffect(() => {
+    setFilteredItems(
+      songs.filter((song) =>
+        song.song.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery]);
+
+  const handleAddToPlaylist = (song: { songName: string; singer: string }) => {
+    addToPlaylist(song);
+    setFilteredItems((prevItems) =>
+      prevItems.filter((item) => item.song !== song.songName)
+    );
+  };
 
   return (
     <Table title="Result">
@@ -20,7 +33,7 @@ const FilteredSongs: React.FC<Props> = ({ searchQuery, addToPlaylist }) => {
             key={song.id}
             songName={song.song}
             singer={song.singer}
-            addToPlaylist={addToPlaylist}
+          addToPlaylist={handleAddToPlaylist}
           />
         ))}
       </div>
