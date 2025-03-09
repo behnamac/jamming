@@ -1,16 +1,17 @@
 import Track from "./Track";
-import Table from "./ui/table";
 import songs from "../stores/data";
+import Table from "./ui/Table";
 
 interface Props {
   searchQuery: string;
   addToPlaylist: (song: { songName: string; singer: string }) => void;
 }
 
-function FilteredSongs({ searchQuery, addToPlaylist }: Props) {
+const FilteredSongs: React.FC<Props> = ({ searchQuery, addToPlaylist }) => {
   const filteredItems = songs.filter((song) =>
     song.song.toLowerCase().includes(searchQuery.toLowerCase()),
   );
+
   return (
     <Table title="Result">
       <div className="ml-2 p-2 text-xl">
@@ -25,6 +26,6 @@ function FilteredSongs({ searchQuery, addToPlaylist }: Props) {
       </div>
     </Table>
   );
-}
+};
 
 export default FilteredSongs;

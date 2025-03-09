@@ -1,12 +1,16 @@
+import { useState } from "react";
 interface props {
   songName: string;
   singer: string;
   addToPlaylist?: (song: { songName: string; singer: string }) => void;
 }
 function Track({ songName, singer, addToPlaylist }: props) {
+  const [added, setAdded] = useState(false);
+
   const handleClick = () => {
     if (addToPlaylist) {
       addToPlaylist({ songName, singer });
+      setAdded(!added);
     }
   };
 
@@ -20,7 +24,7 @@ function Track({ songName, singer, addToPlaylist }: props) {
         className="m-2 p-2 text-gray-200 hover:cursor-pointer hover:text-gray-300"
         onClick={handleClick}
       >
-        +
+        {added ? "-" : "+"}
       </button>
     </div>
   );
