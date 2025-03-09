@@ -6,22 +6,28 @@ import { useEffect, useState } from "react";
 interface Props {
   searchQuery: string;
   addToPlaylist: (song: { songName: string; singer: string }) => void;
+  playlist: { songName: string; singer: string }[];
 }
 
-const FilteredSongs: React.FC<Props> = ({ searchQuery, addToPlaylist }) => {
+const FilteredSongs: React.FC<Props> = ({
+  searchQuery,
+  addToPlaylist,
+  playlist,
+}) => {
   const [filteredItems, setFilteredItems] = useState(songs);
+
   useEffect(() => {
     setFilteredItems(
       songs.filter((song) =>
-        song.song.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+        song.song.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
     );
   }, [searchQuery]);
 
   const handleAddToPlaylist = (song: { songName: string; singer: string }) => {
     addToPlaylist(song);
     setFilteredItems((prevItems) =>
-      prevItems.filter((item) => item.song !== song.songName)
+      prevItems.filter((item) => item.song !== song.songName),
     );
   };
 
@@ -33,7 +39,8 @@ const FilteredSongs: React.FC<Props> = ({ searchQuery, addToPlaylist }) => {
             key={song.id}
             songName={song.song}
             singer={song.singer}
-          addToPlaylist={handleAddToPlaylist}
+            addToPlaylist={handleAddToPlaylist}
+            playlist={playlist}
           />
         ))}
       </div>

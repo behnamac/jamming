@@ -25,8 +25,9 @@ function Home() {
           <FilteredSongs
             searchQuery={searchQuery}
             addToPlaylist={addToPlaylist}
+            playlist={playlist}
           />
-          <Playlist playlist={playlist} />
+          <Playlist playlist={playlist} addToPlaylist={addToPlaylist} />
         </div>
       </div>
     </section>
