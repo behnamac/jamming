@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 interface Props {
   searchQuery: string;
   addToPlaylist: (song: { songName: string; singer: string }) => void;
+  removeFromPlaylist: (song: { songName: string; singer: string }) => void;
   playlist: { songName: string; singer: string }[];
 }
 
 const FilteredSongs: React.FC<Props> = ({
   searchQuery,
   addToPlaylist,
+  removeFromPlaylist,
   playlist,
 }) => {
   const [filteredItems, setFilteredItems] = useState(songs);
@@ -31,6 +33,14 @@ const FilteredSongs: React.FC<Props> = ({
     );
   };
 
+  const handleRemoveFromPlaylist = (song: {
+    songName: string;
+    singer: string;
+  }) => {
+    removeFromPlaylist(song);
+    setFilteredItems((prevItems) => [...prevItems, { id: Date.now(), song: song.songName, singer: song.singer }]);
+  };
+
   return (
     <Table title="Result">
       <div className="ml-2 p-2 text-xl">
@@ -40,6 +50,7 @@ const FilteredSongs: React.FC<Props> = ({
             songName={song.song}
             singer={song.singer}
             addToPlaylist={handleAddToPlaylist}
+            removeFromPlaylist={handleRemoveFromPlaylist}
             playlist={playlist}
           />
         ))}

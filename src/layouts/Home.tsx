@@ -17,6 +17,15 @@ function Home() {
     setPlaylist((prevPlaylist) => [...prevPlaylist, song]);
   };
 
+  const removeFromPlaylist = (song: { songName: string; singer: string }) => {
+    setPlaylist((prevPlaylist) =>
+      prevPlaylist.filter(
+        (item) =>
+          item.songName !== song.songName || item.singer !== song.singer,
+      ),
+    );
+  };
+
   return (
     <section className="min-w-[320px] bg-purple-950">
       <div className="mx-auto flex h-[95vh] min-h-[650px] max-w-[1440px] flex-col items-center justify-center">
@@ -25,9 +34,14 @@ function Home() {
           <FilteredSongs
             searchQuery={searchQuery}
             addToPlaylist={addToPlaylist}
+            removeFromPlaylist={removeFromPlaylist}
             playlist={playlist}
           />
-          <Playlist playlist={playlist} addToPlaylist={addToPlaylist} />
+          <Playlist
+            playlist={playlist}
+            addToPlaylist={addToPlaylist}
+            removeFromPlaylist={removeFromPlaylist}
+          />
         </div>
       </div>
     </section>
