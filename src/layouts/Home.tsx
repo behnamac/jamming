@@ -39,7 +39,6 @@ function Home() {
           />
           <Playlist
             playlist={playlist}
-            addToPlaylist={addToPlaylist}
             removeFromPlaylist={removeFromPlaylist}
           />
         </div>
