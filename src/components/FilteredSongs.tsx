@@ -2,6 +2,7 @@ import Track from "./Track";
 import songs from "../stores/data";
 import Table from "./ui/Table";
 import { useEffect, useState } from "react";
+import TableList from "./ui/TableList";
 
 interface Props {
   searchQuery: string;
@@ -38,23 +39,26 @@ const FilteredSongs: React.FC<Props> = ({
     singer: string;
   }) => {
     removeFromPlaylist(song);
-    setFilteredItems((prevItems) => [...prevItems, { id: Date.now(), song: song.songName, singer: song.singer }]);
+    setFilteredItems((prevItems) => [
+      ...prevItems,
+      { id: Date.now(), song: song.songName, singer: song.singer },
+    ]);
   };
 
   return (
     <Table title="Result">
-      <div className="ml-2 p-2 text-xl">
-        {filteredItems.map((song) => (
-          <Track
-            key={song.id}
-            songName={song.song}
-            singer={song.singer}
-            addToPlaylist={handleAddToPlaylist}
-            removeFromPlaylist={handleRemoveFromPlaylist}
-            playlist={playlist}
-          />
-        ))}
-      </div>
+        <TableList className="h-full">
+          {filteredItems.map((song) => (
+            <Track
+              key={song.id}
+              songName={song.song}
+              singer={song.singer}
+              addToPlaylist={handleAddToPlaylist}
+              removeFromPlaylist={handleRemoveFromPlaylist}
+              playlist={playlist}
+            />
+          ))}
+        </TableList>
     </Table>
   );
 };
