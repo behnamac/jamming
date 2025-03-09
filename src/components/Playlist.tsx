@@ -26,7 +26,7 @@ const Playlist: React.FC<PlaylistProps> = ({
         ))}
       </TableList>
 
-      <button className="rounded-xl bg-purple-400 p-2 text-white">
+      <button className="rounded-xl bg-purple-400 p-2 text-white hover:bg-purple-500 hover:cursor-pointer">
         Add to Spotify
       </button>
     </Table>
