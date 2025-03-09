@@ -1,5 +1,4 @@
-import React from "react";
-import Table from "./ui/table";
+import Table from "./ui/Table";
 
 function Playlist() {
   return (
