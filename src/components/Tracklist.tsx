@@ -1,9 +1,5 @@
-import React from 'react'
-
 function Tracklist() {
-  return (
-    <div>Tracklist</div>
-  )
+  return <div>Tracklist</div>;
 }
 
-export default Tracklist
+export default Tracklist;
